@@ -1,26 +1,27 @@
-﻿#define _CRT_SECURE_NO_WARNINGS 
-#include<iostream>
-#include<string>
-#include<windows.h>
-#include<ctime>
-#include<conio.h>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string>
+#include <windows.h>
+#include <ctime>
+#include <conio.h>
 using namespace std;
-class  que
+class que
 {
 public:
-    que(string n) :next(nullptr), request(n) {}
-    que* next;
+    que(string n) : next(nullptr), request(n) {}
+    que *next;
     string request;
 };
 class questruct
 {
-    que* front;
-    que* rear;
+    que *front;
+    que *rear;
+
 public:
-    questruct() :front(nullptr), rear(nullptr) {}
+    questruct() : front(nullptr), rear(nullptr) {}
     void enque(string n)
     {
-        que* ne = new que(n);
+        que *ne = new que(n);
         if (front == nullptr)
         {
             front = rear = ne;
@@ -51,7 +52,7 @@ public:
         else
         {
             string y;
-            que* temp = front;
+            que *temp = front;
             y = temp->request;
             front = front->next;
             delete temp;
@@ -61,7 +62,7 @@ public:
     }
     void display()
     {
-        que* temp = front;
+        que *temp = front;
         if (!temp)
         {
             cout << "list is empty" << endl;
@@ -75,7 +76,7 @@ public:
     }
     ~questruct()
     {
-        que* temp = front;
+        que *temp = front;
         while (temp)
         {
             front = front->next;
@@ -87,15 +88,16 @@ public:
 class stack
 {
 public:
-    stack* next;
+    stack *next;
     string message;
-    stack(string s) :message(s), next(nullptr) {}
+    stack(string s) : message(s), next(nullptr) {}
 };
 class stackstruct
 {
-    stack* top;
+    stack *top;
+
 public:
-    stackstruct() :top(nullptr) {}
+    stackstruct() : top(nullptr) {}
     bool empty()
     {
         if (top == nullptr)
@@ -109,7 +111,7 @@ public:
     }
     void insert(string s)
     {
-        stack* n = new stack(s);
+        stack *n = new stack(s);
         if (empty())
         {
             top = n;
@@ -135,7 +137,7 @@ public:
     }
     void display()
     {
-        stack* temp = top;
+        stack *temp = top;
         if (empty())
         {
             cout << "Inbox is empty" << endl;
@@ -154,14 +156,14 @@ public:
             cout << "Inbox is empty" << endl;
             return;
         }
-        stack* temp = top;
+        stack *temp = top;
         top = top->next;
         delete temp;
     }
     ~stackstruct()
     {
-        stack* temp = top;
-        
+        stack *temp = top;
+
         while (temp)
         {
             top = top->next;
@@ -176,14 +178,15 @@ public:
     string date_time;
     string name;
     string context;
-    posts* next;
-    posts() :next(nullptr) {}
+    posts *next;
+    posts() : next(nullptr) {}
 };
 class poststack
 {
-    posts* top;
+    posts *top;
+
 public:
-    poststack() :top(nullptr) {}
+    poststack() : top(nullptr) {}
     bool empty()
     {
         if (top == nullptr)
@@ -197,7 +200,7 @@ public:
     }
     void insert(posts s)
     {
-        posts* n = new posts();
+        posts *n = new posts();
         n->context = s.context;
         n->date_time = s.date_time;
         n->name = s.name;
@@ -216,7 +219,7 @@ public:
     void display()
     {
         cout << "Post:" << endl;
-        posts* temp = top;
+        posts *temp = top;
         if (empty())
         {
             cout << "No post available" << endl;
@@ -240,13 +243,13 @@ public:
             cout << "NO Post available" << endl;
             return;
         }
-        posts* temp = top;
+        posts *temp = top;
         top = top->next;
         delete temp;
     }
     ~poststack()
     {
-        posts* temp = top;
+        posts *temp = top;
         while (temp)
         {
             top = top->next;
@@ -260,9 +263,9 @@ class edge
 public:
     string relation;
     string status;
-    stackstruct* mess;
+    stackstruct *mess;
     questruct realtime;
-    edge() :mess(nullptr) {}
+    edge() : mess(nullptr) {}
 };
 class node
 {
@@ -280,42 +283,41 @@ public:
         Password = p;
         security = s;
         Last_login = "";
-
     }
 };
 class users
 {
 public:
-
     questruct quereq;
     questruct notification;
     edge ed;
-    node* no;
-    users* next;
+    node *no;
+    users *next;
     poststack myfeed;
     poststack folwrpost;
-    string* sugg;
+    string *sugg;
     int sc;
+
 public:
-    users() : no(nullptr), next(nullptr),sugg(nullptr),sc(0) {}
-  
+    users() : no(nullptr), next(nullptr), sugg(nullptr), sc(0) {}
 };
 
 class searchname
 {
 public:
-    searchname(string d) :data(d), left(nullptr), right(nullptr) {}
+    searchname(string d) : data(d), left(nullptr), right(nullptr) {}
     string data;
-    searchname* left, * right;
+    searchname *left, *right;
 };
 class bst
 {
-    searchname* root;
+    searchname *root;
+
 public:
-    bst() :root(nullptr) {}
+    bst() : root(nullptr) {}
     void insert(string d)
     {
-        searchname* n = new searchname(d);
+        searchname *n = new searchname(d);
         if (!root)
         {
             root = n;
@@ -323,16 +325,15 @@ public:
         }
         else
         {
-            searchname* temp = root;
+            searchname *temp = root;
             while (temp)
             {
-                if (d < temp->data) 
+                if (d < temp->data)
                 {
                     if (!temp->left)
                     {
                         temp->left = n;
                         return;
-
                     }
                     else
                     {
@@ -345,7 +346,6 @@ public:
                     {
                         temp->right = n;
                         return;
-
                     }
                     else
                     {
@@ -360,7 +360,7 @@ public:
             }
         }
     }
-    void inorder(searchname* root)
+    void inorder(searchname *root)
     {
         if (!root)
         {
@@ -373,7 +373,7 @@ public:
             inorder(root->right);
         }
     }
-    void up(string k, string n, searchname* root)
+    void up(string k, string n, searchname *root)
     {
         if (!root)
         {
@@ -386,14 +386,14 @@ public:
         }
         else if (k < root->data)
         {
-            up(k,n,root->left);
+            up(k, n, root->left);
         }
         else
         {
-            up(k,n,root->right);
+            up(k, n, root->right);
         }
     }
-    void update(string k,string n)
+    void update(string k, string n)
     {
         up(k, n, root);
     }
@@ -402,16 +402,15 @@ public:
         cout << "Enter name of user that you want to Search" << endl;
         string k;
         cin.ignore();
-        getline(cin,k);
-        bool p=search(root, k);
+        getline(cin, k);
+        bool p = search(root, k);
         if (!p)
         {
-        
+
             cout << "Not Found" << endl;
-        
         }
     }
-    bool search(searchname* root, string k)
+    bool search(searchname *root, string k)
     {
         if (!root)
         {
@@ -419,7 +418,7 @@ public:
         }
         if (root->data == k)
         {
-            cout << "Found"<<endl;
+            cout << "Found" << endl;
             return true;
         }
         else if (k < root->data)
@@ -440,9 +439,10 @@ public:
 };
 class graph
 {
-    users** list;
-    users* login;
+    users **list;
+    users *login;
     int count;
+
 public:
     graph() : list(nullptr), count(0), login(nullptr) {}
     bst b;
@@ -485,7 +485,6 @@ public:
                     cout << login->no->Last_login;
                     return true;
                 }
-
             }
             name = false;
             for (int i = 0; i < count; i++)
@@ -494,7 +493,6 @@ public:
                 {
                     name = true;
                 }
-
             }
             if (!name)
             {
@@ -521,7 +519,7 @@ public:
                         bool flag;
                         do
                         {
-                           flag = true;
+                            flag = true;
                             getline(cin, p);
                             for (int i = 0; i < count; i++)
                             {
@@ -545,7 +543,6 @@ public:
             }
         }
         return false;
-
     }
     bool signup()
     {
@@ -565,7 +562,7 @@ public:
             {
                 if (list[i]->no->name == n)
                 {
-                    cout << "Account already exists with this name! Enter a unique name"<<endl;
+                    cout << "Account already exists with this name! Enter a unique name" << endl;
                     flag = false;
                     break;
                 }
@@ -596,7 +593,7 @@ public:
             {
                 if (list[i]->no->Password == p)
                 {
-                    cout << "Account already exists with this password! Enter a unique password"<<endl;
+                    cout << "Account already exists with this password! Enter a unique password" << endl;
                     flag = false;
                     break;
                 }
@@ -605,8 +602,8 @@ public:
         do
         {
             flag = true;
-            cout << "A Security Question in case of forgotten Password"<<endl;
-            cout << "What is Your Favorite Dish? "<<endl;
+            cout << "A Security Question in case of forgotten Password" << endl;
+            cout << "What is Your Favorite Dish? " << endl;
             getline(cin, s);
             if (s == "")
             {
@@ -617,7 +614,7 @@ public:
             {
                 if (list[i]->no->security == s)
                 {
-                    cout << "Account already exists with this security answer! Enter a unique answer"<<endl;
+                    cout << "Account already exists with this security answer! Enter a unique answer" << endl;
                     flag = false;
                     break;
                 }
@@ -642,13 +639,12 @@ public:
         cout << "Logged out successfully " << endl;
         cout << t << endl;
         login = nullptr;
-
     }
     void addusers(string n, string c, string p, string s)
     {
-        users* u = new users();
+        users *u = new users();
         u->no = new node(n, c, p, s);
-        users** newlist = new users * [count + 1];
+        users **newlist = new users *[count + 1];
         for (int i = 0; i < count; i++)
         {
             newlist[i] = list[i];
@@ -669,7 +665,7 @@ public:
             cout << " One or both users not found" << endl;
             return;
         }
-        users* io = new users();
+        users *io = new users();
         io->no = new node(list[l]->no->name, list[l]->no->City, list[l]->no->Password, list[l]->no->security);
         io->ed.relation = "Friend";
         io->ed.status = "Pending";
@@ -695,11 +691,11 @@ public:
         }
         else
         {
-            users* rec = nullptr;
+            users *rec = nullptr;
             cout << "Enter a name of Person you want to send a request " << endl;
             string s;
             cin.ignore();
-            users* temp = nullptr;
+            users *temp = nullptr;
             getline(cin, s);
             if (login->no->name == s)
             {
@@ -725,7 +721,6 @@ public:
                 {
                     cout << "Already You Follow " << s << endl;
                     return;
-
                 }
                 else
                 {
@@ -755,7 +750,6 @@ public:
             }
         }
         return;
-
     }
     void acceptreq()
     {
@@ -776,7 +770,7 @@ public:
                 if (j != "")
                 {
                     int k = index(j);
-                    users* temp = list[k]->next;
+                    users *temp = list[k]->next;
                     while (temp->no->name != login->no->name)
                     {
                         temp = temp->next;
@@ -799,7 +793,7 @@ public:
                     return;
                 }
                 bool flag = false;
-                users* temp = login->next;
+                users *temp = login->next;
                 while (temp)
                 {
                     if (temp->no->name == j)
@@ -810,7 +804,7 @@ public:
                 }
                 if (!flag)
                 {
-                    users* rec = nullptr;
+                    users *rec = nullptr;
                     for (int i = 0; i < count; i++)
                     {
                         if (list[i]->no->name == j)
@@ -833,7 +827,6 @@ public:
                             o += "  send a request to you";
                             rec->notification.enque(o);
                         }
-
                     }
                     else
                     {
@@ -846,33 +839,33 @@ public:
                 if (login->quereq.empty())
                 {
                     cout << "No request in que" << endl;
-                    return;     
+                    return;
                 }
-                while (!(login->quereq.empty())) 
+                while (!(login->quereq.empty()))
                 {
                     string j = login->quereq.deque();
                     if (j != "")
                     {
                         int k = index(j);
-                            users* temp = list[k]->next;
-                            while (temp->no->name != login->no->name)
-                            {
-                                temp = temp->next;
-                            }
-                            temp->ed.status = "Active";
-                            string o;
-                            o = temp->no->name;
-                            o += " Accept your request";
-                            temp = list[k];
-                            temp->notification.enque(o);
-                            o = "You  Accept the request of ";
-                            o += j;
-                            login->notification.enque(o);
-                            cout << "You  Accept the request of " << j << endl;
-                            cout << j << " is following you" << endl;  
+                        users *temp = list[k]->next;
+                        while (temp->no->name != login->no->name)
+                        {
+                            temp = temp->next;
+                        }
+                        temp->ed.status = "Active";
+                        string o;
+                        o = temp->no->name;
+                        o += " Accept your request";
+                        temp = list[k];
+                        temp->notification.enque(o);
+                        o = "You  Accept the request of ";
+                        o += j;
+                        login->notification.enque(o);
+                        cout << "You  Accept the request of " << j << endl;
+                        cout << j << " is following you" << endl;
                     }
                     bool flag = false;
-                    users* temp = login->next;
+                    users *temp = login->next;
                     while (temp)
                     {
                         if (temp->no->name == j)
@@ -883,7 +876,7 @@ public:
                     }
                     if (!flag)
                     {
-                        users* rec = nullptr;
+                        users *rec = nullptr;
                         for (int i = 0; i < count; i++)
                         {
                             if (list[i]->no->name == j)
@@ -906,7 +899,6 @@ public:
                                 o += "  send a request to you";
                                 rec->notification.enque(o);
                             }
-
                         }
                         else
                         {
@@ -924,7 +916,6 @@ public:
                 cout << "invalid input" << endl;
                 return;
             }
-
         }
     }
     void declinereq()
@@ -934,12 +925,13 @@ public:
             return;
         }
         string j = login->quereq.deque();
-        if (j != "") {
+        if (j != "")
+        {
             int k = index(j);
             if (k != -1)
             {
-                users* temp = list[k]->next;
-                users* pre = list[k];
+                users *temp = list[k]->next;
+                users *pre = list[k];
 
                 while (temp->no->name != login->no->name)
                 {
@@ -953,7 +945,7 @@ public:
                 {
                     cout << "You decline the follow request of " << j << endl;
                 }
-                users* rec = list[k];
+                users *rec = list[k];
                 string o = login->no->name;
                 o += "  decline your follow request";
                 rec->notification.enque(o);
@@ -963,7 +955,6 @@ public:
         {
             cout << "No request in que" << endl;
         }
-
     }
     void viewreq()
     {
@@ -987,7 +978,7 @@ public:
         for (int i = 0; i < count; i++)
         {
             bool flag = false;
-            users* temp = list[i]->next;
+            users *temp = list[i]->next;
             if (!temp)
             {
                 cout << "FOLLOWERS LIST ARE EMPTY" << endl;
@@ -1011,8 +1002,9 @@ public:
         cin.ignore();
         getline(cin, s);
         int k = index(s);
-        if (k != -1) {
-            users* temp = list[k]->next;
+        if (k != -1)
+        {
+            users *temp = list[k]->next;
             while (temp && temp->no->name != login->no->name)
             {
                 temp = temp->next;
@@ -1026,7 +1018,6 @@ public:
                 o = login->no->name;
                 o += " Blocked you";
                 temp->notification.enque(o);
-
             }
             else
             {
@@ -1049,7 +1040,7 @@ public:
         cout << "YOUR DETAILS: " << endl;
         cout << "NAME: " << login->no->name << endl;
         cout << "CITY: " << login->no->City << endl;
-        users* temp = login->next;
+        users *temp = login->next;
         if (!temp)
         {
             cout << "following list are empty" << endl;
@@ -1061,7 +1052,7 @@ public:
             while (temp)
             {
                 cout << temp->no->name << "\t" << temp->ed.relation
-                    << "\t\t" << temp->ed.status << endl;
+                     << "\t\t" << temp->ed.status << endl;
                 temp = temp->next;
             }
         }
@@ -1071,7 +1062,7 @@ public:
         for (int i = 0; i < count; i++)
         {
             bool flag = false;
-            users* temp = list[i]->next;
+            users *temp = list[i]->next;
             while (temp && temp->ed.status != "Pending")
             {
                 if (temp->no->name == login->no->name)
@@ -1097,7 +1088,7 @@ public:
         for (int i = 0; i < count; i++)
         {
             bool flag = false;
-            users* temp = list[i]->next;
+            users *temp = list[i]->next;
             while (temp)
             {
                 if (temp->no->name == login->no->name && temp->ed.status == "Blocked")
@@ -1118,7 +1109,6 @@ public:
         }
         cout << "********************************" << endl;
         cout << endl;
-
     }
     void displaynotification()
     {
@@ -1136,7 +1126,7 @@ public:
         {
             return;
         }
-        if (!login->notification.empty()) 
+        if (!login->notification.empty())
         {
             cout << "Press Y to Delete all notification or Press P to delete First notification" << endl;
             char c;
@@ -1155,16 +1145,15 @@ public:
             }
             else if (c == 'p' || c == 'P')
             {
-                if (!login->notification.empty()) {
+                if (!login->notification.empty())
+                {
                     login->notification.deque();
                     cout << "Notification deleted" << endl;
-
                 }
                 else
                 {
                     cout << "List is Empty" << endl;
                 }
-
             }
             else
             {
@@ -1180,7 +1169,7 @@ public:
     {
         if (!login)
         {
-           return;
+            return;
         }
         string n, c, p, s;
         string old = login->no->name;
@@ -1244,13 +1233,13 @@ public:
             }
         } while (!flag);
         login->no->City = c;
-        login->no->name= n;
+        login->no->name = n;
         login->no->Password = p;
-        login->no->security= s;
+        login->no->security = s;
     }
     void sendmessage()
     {
-        stackstruct* rec = nullptr;
+        stackstruct *rec = nullptr;
         if (!login)
         {
             return;
@@ -1266,7 +1255,7 @@ public:
         {
             bool mine = false;
             bool him = false;
-            users* temp = login->next;
+            users *temp = login->next;
             while (temp)
             {
                 if (temp && temp->no->name == s && temp->ed.status == "Blocked")
@@ -1285,7 +1274,7 @@ public:
             {
                 if (temp && temp->no->name == login->no->name && temp->ed.status == "Blocked")
                 {
-                    cout <<" You Blocked "<<list[k]->no->name<<" so you cannt send message " << endl;
+                    cout << " You Blocked " << list[k]->no->name << " so you cannt send message " << endl;
                     return;
                 }
                 if (temp && temp->no->name == login->no->name && temp->ed.status == "Active")
@@ -1335,11 +1324,11 @@ public:
                 {
                     temp->notification.enque(o);
                 }
-                if (list[k]) 
+                if (list[k])
                 {
                     temp = list[k]->next;
                 }
-                while (temp && temp->no->name!=login->no->name)
+                while (temp && temp->no->name != login->no->name)
                 {
                     temp = temp->next;
                 }
@@ -1373,8 +1362,9 @@ public:
         cin.ignore();
         getline(cin, n);
         int k = index(n);
-        if (k != -1) {
-            users* temp = login->next;
+        if (k != -1)
+        {
+            users *temp = login->next;
             while (temp && temp->no->name != n)
             {
                 temp = temp->next;
@@ -1391,7 +1381,7 @@ public:
                         temp->ed.mess->display();
                         if (!temp->ed.realtime.empty())
                         {
-                           temp->ed.realtime.~questruct();
+                            temp->ed.realtime.~questruct();
                             cout << "message deque" << endl;
                         }
                     }
@@ -1422,12 +1412,12 @@ public:
         }
         else
         {
-            cout<<"user nor found" << endl;
+            cout << "user nor found" << endl;
         }
     }
     void deletemessage()
     {
-        users* temp = login->next;
+        users *temp = login->next;
         if (!login)
         {
             return;
@@ -1437,7 +1427,8 @@ public:
         cin.ignore();
         getline(cin, n);
         int k = index(n);
-        if (k != -1) {
+        if (k != -1)
+        {
             cout << "Press Y to Delete all message  or Press P to delete Top message" << endl;
             char c;
             cin >> c;
@@ -1449,7 +1440,8 @@ public:
                 }
                 if (temp && temp->ed.mess)
                 {
-                    if (!temp->ed.mess->empty()) {
+                    if (!temp->ed.mess->empty())
+                    {
                         temp->ed.mess->~stackstruct();
                     }
                     else
@@ -1459,8 +1451,7 @@ public:
                 }
                 else
                 {
-                    cout << n<<" Is not your friend" << endl;
-
+                    cout << n << " Is not your friend" << endl;
                 }
             }
             else if (c == 'p' || c == 'P')
@@ -1480,12 +1471,10 @@ public:
                     {
                         cout << "No chat available" << endl;
                     }
-
                 }
                 else
                 {
                     cout << n << " Is not your friend" << endl;
-
                 }
             }
             else
@@ -1516,7 +1505,7 @@ public:
             string t = ctime(&now);
             login->no->post.date_time = t;
             login->myfeed.insert(login->no->post);
-            users* temp = login->next;
+            users *temp = login->next;
             if (!temp)
             {
                 return;
@@ -1538,7 +1527,6 @@ public:
                     temp = temp->next;
                 }
             }
-
         }
     }
     void newfeed()
@@ -1551,7 +1539,6 @@ public:
         else
         {
             login->myfeed.display();
-
         }
     }
     void displaypost()
@@ -1564,7 +1551,6 @@ public:
         {
             login->folwrpost.display();
         }
-    
     }
     void deletepost()
     {
@@ -1577,12 +1563,12 @@ public:
             char p;
             cout << "Enter m for delete your own post " << endl;
             cin >> p;
-            if (p == 'M' || p == 'm') 
+            if (p == 'M' || p == 'm')
             {
                 cout << "Press Y to Delete all Post or Press P to delete Top Post" << endl;
                 char c;
                 cin >> c;
-                
+
                 if (c == 'Y' || c == 'y')
                 {
                     if (!login->myfeed.empty())
@@ -1596,22 +1582,22 @@ public:
                 }
                 else if (c == 'p' || c == 'P')
                 {
-                    if (!login->myfeed.empty()) 
+                    if (!login->myfeed.empty())
                     {
                         login->myfeed.pop();
                     }
 
-                   else
-                   {
-                    cout << "No Post Available" << endl;
-                   }
+                    else
+                    {
+                        cout << "No Post Available" << endl;
+                    }
                 }
                 else
                 {
                     cout << "invalid input";
                 }
             }
-            
+
             else
             {
                 cout << "invalid input";
@@ -1624,7 +1610,7 @@ public:
         {
             return;
         }
-        string* newlist = new string[login->sc + 1];
+        string *newlist = new string[login->sc + 1];
         for (int i = 0; i <= login->sc; i++)
         {
             newlist[i] = "";
@@ -1667,21 +1653,20 @@ public:
         {
             return;
         }
-        users* temp = login->next;
+        users *temp = login->next;
         while (temp)
         {
-            users* rec = nullptr;
+            users *rec = nullptr;
             for (int i = 0; i < count; i++)
             {
                 if (list[i]->no->name == temp->no->name)
                 {
                     rec = list[i]->next;
-
                 }
             }
             while (rec)
             {
-                users* ano = login->next;
+                users *ano = login->next;
                 bool flag = false;
                 while (ano)
                 {
@@ -1708,7 +1693,7 @@ public:
             return;
         }
         suggestion();
-        if (login->sc==0)
+        if (login->sc == 0)
         {
             cout << "List are empty" << endl;
             return;
@@ -1716,7 +1701,7 @@ public:
         cout << "suggestion list are" << endl;
         for (int i = 0; i < login->sc; i++)
         {
-           cout<< login->sugg[i] << endl;
+            cout << login->sugg[i] << endl;
         }
         login->sc = 0;
         login->sugg = nullptr;
@@ -1742,7 +1727,8 @@ void intro()
     Sleep(1500);
     system("cls");
 
-    cout << endl; cout << "\n\n";
+    cout << endl;
+    cout << "\n\n";
     cout << "W     W  EEEEE   L       CCCCC  OOOOO  M   M  EEEEE       TTTTT  OOOOO     M   M  I  N   N  I     I N   N  SSSSS  TTTTT  AAAAA  GGGGG  RRRRR  AAAAA  M   M" << endl;
     cout << "W     W  E       L      C       O   O  MM MM  E             T    O   O     MM MM  I  NN  N  I     I NN  N  S        T    A   A  G      R   R  A   A  MM MM" << endl;
     cout << "W  W  W  EEEE    L      C       O   O  M M M  EEEE          T    O   O     M M M  I  N N N  I     I N N N  SSS      T    AAAAA  G  GG  RRRR   AAAAA  M M M" << endl;
@@ -1777,7 +1763,7 @@ void menu(graph g)
     char c = _getch();
     if (c == 13)
     {
-        int choice=0;
+        int choice = 0;
         bool running = true;
         while (running)
         {
@@ -1899,19 +1885,19 @@ int main()
     intro();
     Sleep(1000);
     cout << "Press Enter to View Menu" << endl;
-    char c=_getch();
-    if(c==13)
+    char c = _getch();
+    if (c == 13)
     {
         graph g;
         bool exit = true;
-        do 
+        do
         {
             system("cls");
             cout << "1.  Signup" << endl;
             cout << "2.  Login" << endl;
             cout << "3.  Exit " << endl;
             bool flag;
-            int choice=0;
+            int choice = 0;
             while (!(cin >> choice))
             {
                 cin.clear();
